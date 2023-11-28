@@ -1,12 +1,12 @@
-import logging
+
 from rest_framework import viewsets
-from posts.models import Post
-from .serializers import PostSerializer
+from posts.models import Post, Group
+from .serializers import PostSerializer, GroupSerializer
 from django.core.exceptions import PermissionDenied
 from rest_framework import status
 
-# Настройка логгера
-logger = logging.getLogger(__name__)
+
+
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
@@ -25,3 +25,8 @@ class PostViewSet(viewsets.ModelViewSet):
         if serializer.author != self.request.user:
             raise PermissionDenied('Изменение чужого контента запрещено!')
         super(PostViewSet, self).perform_destroy(serializer) 
+
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    http_method_names = ['get']
