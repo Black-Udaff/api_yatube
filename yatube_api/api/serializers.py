@@ -9,3 +9,4 @@ class PostSerializer(serializers.ModelSerializer):
 
         fields = ('id', 'text', 'author', 'group', 'image', 'pub_date')
         read_only_fields = ('author',)
+        
