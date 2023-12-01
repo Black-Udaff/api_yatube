@@ -5,7 +5,6 @@ from .serializers import PostSerializer, GroupSerializer, CommentSerializer
 from django.core.exceptions import PermissionDenied
 
 
-
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
